@@ -60,7 +60,7 @@ resource "lxd_profile" "adm_profile" {
 resource "lxd_network" "dev_network" {
   name = "dev-network"
   config = {
-    "ipv4.address" = "10.0.20.1/24"
+    "ipv4.address" = "10.20.0.1/24"
     "ipv4.nat"     = "true"
     "ipv6.address" = "none"
   }
@@ -84,7 +84,7 @@ resource "lxd_profile" "dev_profile" {
 resource "lxd_network" "tst_network" {
   name = "tst-network"
   config = {
-    "ipv4.address" = "10.0.30.1/24"
+    "ipv4.address" = "10.30.0.1/24"
     "ipv4.nat"     = "true"
     "ipv6.address" = "none"
   }
