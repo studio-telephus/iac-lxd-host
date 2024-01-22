@@ -57,54 +57,6 @@ resource "lxd_profile" "adm_profile" {
   }
 }
 
-resource "lxd_network" "dev_network" {
-  name = "dev-network"
-  config = {
-    "ipv4.address" = "10.20.0.1/24"
-    "ipv4.nat"     = "true"
-    "ipv6.address" = "none"
-  }
-}
-
-resource "lxd_profile" "dev_profile" {
-  name        = "nw-dev"
-  description = "LXD profile for dev containers"
-
-  device {
-    name = "eth0"
-    type = "nic"
-
-    properties = {
-      nictype = "bridged"
-      parent  = lxd_network.dev_network.name
-    }
-  }
-}
-
-resource "lxd_network" "tst_network" {
-  name = "tst-network"
-  config = {
-    "ipv4.address" = "10.30.0.1/24"
-    "ipv4.nat"     = "true"
-    "ipv6.address" = "none"
-  }
-}
-
-resource "lxd_profile" "tst_profile" {
-  name        = "nw-tst"
-  description = "LXD profile for tst containers"
-
-  device {
-    name = "eth0"
-    type = "nic"
-
-    properties = {
-      nictype = "bridged"
-      parent  = lxd_network.tst_network.name
-    }
-  }
-}
-
 resource "lxd_profile" "privileged_profile" {
   name        = "privileged"
   description = "LXD privileged container which may create nested cgroups"
